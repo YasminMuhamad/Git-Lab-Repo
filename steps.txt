@@ -1,0 +1,127 @@
+Lab 2
+------------------------------------------------
+** Create a new project on your local machine, then push it your remote repo.
+
+1- Open Git Bash
+
+2- Create new folder for the lab and move to it
+$ mkdir lab
+$ cd lab
+
+3- Initialize repo in this path
+$ git init
+
+// now you should see something like this: yasmi@Yasmin MINGW64 ~/OneDrive/Desktop/git_lab (master)
+// notice the branch name (master)
+
+4- We will create test README.md file to see the changes
+$ echo "# My Project" > README.md
+
+// this moves changes to "Staging Area"
+$ git add README.md
+// this moves changes to "Local Repository"
+$ git commit -m "Initial commit"
+
+5- Create new repo on your github account as normal 
+// this moves changes to "Remote Repository"
+$ git remote add origin https://github.com/YasminMuhamad/Git-Lab-Repo.git
+$ git push origin master
+
+
+**  Create two branches (dev & test) then create one file on each branch, and push this changes to the remote repo
+
+6- Create first branch
+$ git checkout -b dev
+
+// create file and push it
+$ echo "This is dev file" > dev.txt
+$ git add dev.txt
+$ git commit -m "feat: add dev.txt in dev branch"
+
+$ git push -u origin dev
+
+
+// create second branch
+// first move back to master
+$ git checkout master
+
+$ git checkout -b test
+$ echo "This is test file" > test.txt
+$ git add test.txt
+$ git commit -m "feat: add test.txt in test branch"
+$ git push -u origin test
+
+**  Merge this changes on Master branch and then push it to your remote master branch
+
+// move back to master
+$ git checkout master
+
+7- Merge both dev & test on master
+$ git merge --no-ff dev -m "merge: dev branch into master"
+$ git merge --no-ff test -m "merge: test branch into master"
+
+$ git push origin master
+
+// now you will notice the files appears in master branch
+
+** Tell me how to remove them locally and remotely
+// remove locally
+git branch -d dev
+git branch -d test
+
+// remove remotely
+git push origin --delete dev
+git push origin --delete test
+
+**  Send an invitation to me
+
+8- From your repo page --> Settings --> Collaborators --> Add people --> hassaneldash --> Add hassaneldash
+
+**  Create an annotated tag with tagname (v1.7) 
+
+9- Create tag
+$ git tag -a v1.7 -m "release: version 1.7"
+
+// to review tag
+$ git show v1.7
+
+**  Push it to the remote repository
+
+10- Push tag
+$ git push origin v1.7
+
+** Tell me how to list tags
+
+git tag --list
+or
+git tag -l
+
+// to get remote tags that have been pushed
+git ls-remote --tags origin
+
+
+**  Tell me how to delete tag locally and remotely
+
+// delete locally
+git tag -d v1.7
+
+// delete remotely
+git push origin --delete tag v1.7
+
+**  Add an image in the README.md file
+
+11- Add any image to your folder
+
+12-  Open README.md with vscode
+
+13- Write ![Alt Text](photo.png)
+
+14- Save file then
+// to view changes
+$ git status
+// you will see something like this "modified: README.md ... photo.png"
+// now push
+$ git add README.md pic.png
+$ git commit -m "Added image in README"
+$ git push origin master
+
